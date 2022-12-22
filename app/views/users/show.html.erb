@@ -1,0 +1,11 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <h2><%= @user.name %></h2>
+    </div>
+    <div class="keywords-container">
+    <% linked_keywords = Vote.where(voter_id: @current_user.id, voted_id: @user.id ).pluck(:keyword_id) %>
+    <%= render partial: "votes/vote", collection: @votes, cached: true, locals: { linked_keywords: linked_keywords } %>
+    </div>
+  </div>
+</div>

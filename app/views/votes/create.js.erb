@@ -1,0 +1,2 @@
+$('#keyword_<%= @vote.id %>').html("<%= j(render partial: 'votes/vote', collection: @votes, cached: true, locals: { linked_keywords: @linked_keywords }) %>");
+

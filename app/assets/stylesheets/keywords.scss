@@ -1,0 +1,23 @@
+.unvoted {
+  background-color: #d94f4f;
+  color: white;
+  font-weight: 300;
+  border-radius: 10px;
+  margin: 8px;
+  padding: 8px;
+}
+
+.voted {
+  background-color: #7b0202;
+  color: white;
+  font-weight: 300;
+  border-radius: 10px;
+  margin: 8px;
+  padding: 8px;
+}
+
+.keywords-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
