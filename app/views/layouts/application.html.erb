@@ -1,57 +1,64 @@
-
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BuchakeApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "users", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "keywords", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "home", "data-turbo-track": "reload" %>
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
+<head>
+  <title>BuchakeApp</title>
+  <%= favicon_link_tag('favicon.ico') %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <body>
-    <header>
-      <div class="header-logo">
-          <%= link_to("BuchakeApp", "/") %>
-      </div>
-      <ul class="header-menus">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/87ea4c493f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <div class="bi me-2">
+          <%= embedded_svg('logo.svg', class: 'logo-icon')%>
+        </div>
+      </a>
+      <ul class="nav nav-pills fw-bold align-items-center">
         <% if @current_user %>
-          <li>
-            <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
-          </li>
-          <li>
-            <%= link_to("投票先一覧", "/users/index") %>
-          </li>
-          <li>
-            <%= link_to("ログアウト", "/logout", {method: "post"}) %>
-          </li>
+        <li class="nav-item">
+          <%= link_to(@current_user.name, "/users/ranking/#{@current_user.id}", class: "text-decoration-none text-dark mx-3") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("ユーザ一覧", "/", class: "text-decoration-none text-dark mx-3") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("ログアウト", "/logout", {method: "post", class: "text-decoration-none text-dark mx-3"}) %>
+        </li>
         <% else %>
-          <li>
-            <%= link_to("What is BuchakeSan", "/about") %>
-          </li>
-          <li>
-            <%= link_to("新規登録", "/signup") %>
-          </li>
-          <li>
-            <%= link_to("ログイン", "/login") %>
-          </li>
+        <%# <li class="nav-item"> %>
+        <%# <%= link_to("What is BuchakeSan", "/about", class: "text-decoration-none text-dark mx-3") %>
+        <%# </li> %>
+        <li class="nav-item">
+          <%= link_to("ユーザ一覧", "/", class: "text-decoration-none text-dark mx-3") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("ログイン", "/login", class: "text-decoration-none text-dark mx-3") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("新規登録", "/signup", class: "text-decoration-none text-dark mx-3") %>
+        </li>
         <% end %>
       </ul>
     </header>
+  </div>
 
-    <% if flash[:notice] %>
-      <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-    
-    <%= yield %>
-  </body>
+  <% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
+
+  <%= yield %>
+</body>
+
 </html>

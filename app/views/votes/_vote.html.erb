@@ -1,11 +1,11 @@
 <div id="keyword_<%= vote.id %>">
   <% if linked_keywords.include?(vote.id) %>
-    <%= link_to "/votes/#{vote.id}/#{@current_user.id}/#{@user.id}/destroy", method: "post" do %>
-      <div class="voted"><%= vote.content %></div>
-    <% end %>
+  <%= link_to "/votes/#{vote.id}/#{@current_user.id}/#{@user.id}/destroy", method: "post" do %>
+  <div type="button" class="btn btn-lg btn-block btn-outline-primary my-4"><%= vote.option %></div>
+  <% end %>
   <% else %>
-    <%= link_to "/votes/#{vote.id}/#{@current_user.id}/#{@user.id}/create", method: "post" do %>
-      <div class="unvoted"><%= vote.content %></div>
-    <% end %>
+  <%= link_to "/votes/#{vote.id}/#{@current_user.id}/#{@user.id}/create", method: "post" do %>
+  <div type="button" class="btn btn-lg btn-block btn-danger my-4"><%= vote.option %></div>
+  <% end %>
   <% end %>
 </div>

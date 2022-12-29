@@ -1,2 +1,1 @@
-$('#keyword_<%= @vote.id %>').html("<%= j(render partial: 'votes/vote', collection: @votes, cached: true, locals: { linked_keywords: @linked_keywords }) %>");
-
+$('#keyword_<%= @keyword.id %>').html('<%= link_to "/votes/#{@keyword.id}/#{@current_user.id}/#{@user.id}/destroy", class: "text-decoration-none voted keyword-text my-4", method: "post", remote:true do %><%= @keyword.option %><% end %>');

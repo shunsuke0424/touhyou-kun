@@ -1,11 +1,78 @@
-<div class="main user-show">
-  <div class="container">
-    <div class="user">
-      <h2><%= @user.name %></h2>
+<div class="main">
+  <div class="container-fluid fw-bold">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-6 col-10 text-center">
+        <div class="user-container">
+          <span class="user-name">
+            <%= @user.name %>
+          </span>
+          さんの<br>
+          ぶっちゃけた印象を投票しよう
+        </div>
+      </div>
     </div>
-    <div class="keywords-container">
-    <% linked_keywords = Vote.where(voter_id: @current_user.id, voted_id: @user.id ).pluck(:keyword_id) %>
-    <%= render partial: "votes/vote", collection: @votes, cached: true, locals: { linked_keywords: linked_keywords } %>
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-5 col-10">
+        <div class="d-flex justify-content-center">
+          <% if Like.find_by(like_user_id: @current_user, liked_user_id: @user.id) || !Like.find_by(like_user_id: @current_user) %>
+          <div class="mx-2 pa-4" id="like_<%= @user.id %>_from_<%= @current_user.id %>">
+            <% if Like.find_by(like_user_id: @current_user.id, liked_user_id: @user.id) %>
+            <%= link_to "/likes/#{@user.id}/destroy", class: "text-decoration-none liked-button keyword-text my-4", method: "post", remote:true do %>
+            <i class="fa fa-heart liked-icon"></i>
+            ぶっちゃけ好き
+            <% end %>
+            <% else %>
+            <%= link_to "/likes/#{@user.id}/create", class: "text-decoration-none unlike-button keyword-text my-4", method: "post", remote:true do %>
+            <i class="fa fa-heart unlike-icon"></i>
+            ぶっちゃけ好き
+            <% end %>
+            <% end %>
+          </div>
+          <% else %>
+          <button type="button" class="like-done-button keyword-text my-4 fw-bold" disabled>
+            <i class="fa-sharp fa-solid fa-circle-check green-heart"></i>
+            別の人に片想い中
+          </button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-10">
+        <% linked_keywords = Vote.where(voter_id: @current_user.id, voted_id: @user.id ).pluck(:keyword_id) %>
+        <% if @user.id == @current_user.id %>
+        <div class="keywords-container">
+          <%= render partial: "users/vote", collection: @keywords, cached: true, locals: { linked_keywords: linked_keywords } %>
+          </button>
+        </div>
+        <% else %>
+        <div class="keywords-container mb-5 pb-5">
+          <% Keyword.select(:question).distinct.each_with_index do |keyword, index| %>
+          <div class="mb-3">
+            <div class="question">
+              Q<%= index+1 %>. <%= keyword.question %>
+            </div>
+            <div class="d-flex justify-content-center">
+              <% keywords = @grouped_keywords[keyword.question] %>
+              <% keywords.each do |keyword| %>
+              <div class="mx-2 pa-4" id="keyword_<%= keyword.id %>">
+                <% if linked_keywords.include?(keyword.id) %>
+                <%= link_to "/votes/#{keyword.id}/#{@current_user.id}/#{@user.id}/destroy", class: "text-decoration-none voted keyword-text my-4", method: "post", remote:true do %>
+                <%= keyword.option %>
+                <% end %>
+                <% else %>
+                <%= link_to "/votes/#{keyword.id}/#{@current_user.id}/#{@user.id}/create", class: "text-decoration-none unvoted keyword-text my-4", method: "post", remote:true do %>
+                <%= keyword.option %>
+                <% end %>
+                <% end %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

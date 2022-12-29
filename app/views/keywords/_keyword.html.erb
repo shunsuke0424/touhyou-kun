@@ -1,11 +1,11 @@
 <div id="keyword_<%= keyword.id %>">
   <% if UserKeyword.find_by(user_id: @user.id, keyword_id: keyword.id) %>
-    <%= link_to "/likes/#{keyword.id}/#{@user.id}/destroy", method: "post", remote: true do %>
-      <div class="voted"><%= keyword.content %></div>
-    <% end %>
+  <%= link_to "/likes/#{keyword.id}/#{@user.id}/destroy", method: "post", remote: true do %>
+  <div class="voted"><%= keyword.option %></div>
+  <% end %>
   <% else %>
-    <%= link_to "/likes/#{keyword.id}/#{@user.id}/create", method: "post", remote: true do %>
-      <div class="unvoted"><%= keyword.content %></div>
-    <% end %>
+  <%= link_to "/likes/#{keyword.id}/#{@user.id}/create", method: "post", remote: true do %>
+  <div class="unvoted"><%= keyword.option %></div>
+  <% end %>
   <% end %>
 </div>

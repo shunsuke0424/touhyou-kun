@@ -1,0 +1,72 @@
+<div class="main user-show">
+  <div class="container fw-bold">
+    <div class="row justify-content-center my-5">
+      <div class="col-lg-4 col-10 text-center">
+        <div class="user-container">
+          <span class="user-name">
+            <%= @user.name %>
+          </span>
+          さんの<br>
+          ぶっちゃけられた結果を見る
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mb-md-5 pb-md-5">
+      <div class="col-3">
+        <% if @likes_count > 0%>
+        <div class="justify-content-center alert alert-danger d-flex align-items-center" role="alert">
+          <div>
+            <i class="fa-solid fa-heart"></i>
+            現在<%=@likes_count%>人から好かれてます！
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-10">
+        <div class="result-container">
+          <% @final_params.zip(@data) do |result_hash, data| %>
+          <% if result_hash[:result] != nil%>
+          <div class="mb-5 pb-5">
+            <div class="question mb-4 justify-content-center">
+              <%= result_hash[:question] %>
+            </div>
+            <div class="row justify-content-center align-items-center">
+              <div class="left-result p-3 col-5 col-md-3 order-1 order-md-1 me-2 me-md-0">
+                <div class="option-container justify-content-center">
+                  <%= result_hash[:result][-1][:option] %>
+                </div>
+                <div class="ratio-container justify-content-center">
+                  <%= result_hash[:result][-1][:ratio] %>%
+                </div>
+              </div>
+              <div class="chart-result col-md-6 col-9 order-3 order-md-2">
+                <%= pie_chart data, donut: true, suffix: "%", legend: false %>
+              </div>
+              <div class="right-result p-3 col-5 col-md-3 order-2 order-md-3 ms-2 ms-md-0">
+                <div class="option-container justify-content-center">
+                  <%= result_hash[:result][0][:option] %>
+                </div>
+                <div class="ratio-container justify-content-center">
+                  <%= result_hash[:result][0][:ratio] %>%
+                </div>
+              </div>
+            </div>
+          </div>
+          <% else %>
+          <div class="mb-5 pb-5">
+            <div class="question mb-4 justify-content-center">
+              <%= result_hash[:question] %>
+            </div>
+            <div class="stamp-icon my-3 d-flex justify-content-center">
+              <%= embedded_svg('stamp01.svg', class: 'stamp-icon')%>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

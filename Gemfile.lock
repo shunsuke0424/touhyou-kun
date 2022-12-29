@@ -74,9 +74,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
-    bootstrap (4.3.1)
+    bootstrap (5.2.3)
       autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 1.14.3, < 2)
+      popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -89,6 +89,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chartkick (4.2.1)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -143,7 +144,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.10-aarch64-linux)
       racc (~> 1.4)
-    popper_js (1.16.1)
+    popper_js (2.11.6)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -244,8 +245,9 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
-  bootstrap (~> 4.3.1)
+  bootstrap
   capybara
+  chartkick
   debug
   importmap-rails
   jbuilder

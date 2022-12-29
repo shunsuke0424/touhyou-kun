@@ -1,0 +1,1 @@
+$('#like_<%= @user.id %>_from_<%= @current_user.id %>').html('<%= link_to "/likes/#{@user.id}/create", class: "text-decoration-none unlike-button keyword-text my-4", method: "post", remote:true do %><i class="fa fa-heart unlike-icon"></i>ぶっちゃけ好き<% end %>');

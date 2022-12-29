@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_22_034947) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_28_154949) do
   create_table "keywords", charset: "utf8mb4", force: :cascade do |t|
-    t.string "content", default: "", null: false
+    t.string "option", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["content"], name: "index_keywords_on_content", unique: true
+    t.string "question"
+  end
+
+  create_table "likes", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "like_user_id"
+    t.bigint "liked_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["like_user_id", "liked_user_id"], name: "index_likes_on_like_user_id_and_liked_user_id", unique: true
+    t.index ["like_user_id"], name: "index_likes_on_like_user_id"
+    t.index ["liked_user_id"], name: "index_likes_on_liked_user_id"
   end
 
   create_table "user_keywords", charset: "utf8mb4", force: :cascade do |t|
@@ -48,6 +58,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_034947) do
     t.index ["voter_id"], name: "index_votes_on_voter_id"
   end
 
+  add_foreign_key "likes", "users", column: "like_user_id"
+  add_foreign_key "likes", "users", column: "liked_user_id"
   add_foreign_key "user_keywords", "users"
   add_foreign_key "votes", "keywords"
   add_foreign_key "votes", "users", column: "voted_id"

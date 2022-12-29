@@ -1,116 +1,162 @@
-/* users/index ================================ */
-.users-heading {
-  font-weight: 300;
-  margin: 60px 0 20px;
-  font-size: 48px;
-  color: #bcc8d4;
+.signin-button {
+  background-color: #6949ff;
 }
 
-.users-index-item {
-  padding: 20px 30px;
-  background-color: white;
-  overflow: hidden;
-  box-shadow: 0 2px 6px #c1ced7;
-  display: table;
-  width: 100%;
+.name-text {
+  font-size: 18px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
-.user-left img {
-  width: 50px;
-  height: 50px;
-  border-radius: 40%;
-  box-shadow: 0 2px 6px #c1ced7;
-  object-fit: cover;
+.title {
+  font-size: 32px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+.vote-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 4px;
+  /* Primary/500 */
+  background: #6949ff;
+  border-radius: 100px;
 }
 
-.user-name a {
+.vote-button-container:hover {
+  color: #ffffff;
+}
+
+.display-button-container {
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 4px;
+  /* Primary/500 */
+  border: 2px solid #6949ff;
+  border-radius: 100px;
+}
+
+.display-button-container:hover {
+  color: #6949ff;
+}
+
+.display-text {
+  font-family: "Nunito";
+  font-style: normal;
   font-weight: 600;
-}
-
-.user-name a:hover {
-  color: #3ecdc6;
-}
-
-.user-left {
-  float: left;
-  width: 10%;
-}
-
-.user-right {
-  width: 90%;
-  padding-left: 25px;
-  text-align: left;
-  display: table-cell;
-  vertical-align: middle;
-}
-
-/* users/show ================================ */
-.user-show {
+  font-size: 16px;
+  line-height: 140%;
+  /* identical to box height, or 17px */
+  display: flex;
+  align-items: center;
   text-align: center;
+  letter-spacing: 0.2px;
+  /* Primary/500 */
+  color: #6949ff;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
-.user {
-  margin-bottom: 20px;
-}
-
-.user img {
-  width: 80px;
-  height: 80px;
-  border-radius: 40%;
-  box-shadow: 0 2px 6px #c1ced7;
-  margin: 20px 0 10px;
-  object-fit: cover;
-}
-
-.user h2 {
-  font-size: 20px;
+.vote-text {
+  font-family: "Nunito";
+  font-style: normal;
   font-weight: 600;
-  line-height: 1.2;
+  font-size: 16px;
+  line-height: 140%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
-.user p {
-  font-size: 13px;
-  margin-bottom: 15px;
+.left-result {
+  box-sizing: border-box;
+  background: rgba(105, 73, 255, 0.08);
+  border: 2px solid #6949ff;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  .ratio-container {
+    font-family: "Futura";
+    font-style: normal;
+    font-size: 48px;
+    line-height: 140%;
+    /* or 67px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.2px;
+
+    color: #6949ff;
+    @media (max-width: 576px) {
+      font-size: 28px;
+    }
+  }
+}
+.right-result {
+  box-sizing: border-box;
+  background: rgba(255, 74, 131, 0.08);
+  border: 2px solid #ff4a83;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  .ratio-container {
+    font-family: "Futura";
+    font-style: normal;
+    font-size: 48px;
+    line-height: 140%;
+    /* or 67px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.2px;
+
+    color: #ff4a83;
+    @media (max-width: 576px) {
+      font-size: 28px;
+    }
+  }
 }
 
-.user a {
-  color: #8899a6;
-  text-decoration: underline;
-  font-weight: 200;
-}
+.option-container {
+  font-family: "Futura";
+  font-style: normal;
+  font-size: 20px;
+  line-height: 140%;
+  /* identical to box height, or 28px */
 
-.user span {
-  color: #afb6bf;
-  font-weight: 200;
-  padding: 0 6px 0 8px;
-}
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.2px;
 
-.user-tabs {
-  margin-top: 40px;
-  background-color: white;
-  overflow: hidden;
-  box-shadow: 0 2px 6px #c1ced7;
-}
-
-.user-tabs li {
-  float: left;
-}
-
-.user-tabs li.active {
-  border-bottom: 2px solid #3ecdc6;
-}
-
-.user-tabs li.active a {
-  color: #57575f;
-}
-
-.user-tabs a {
-  display: inline-block;
-  padding: 16px 30px;
-  color: #afb6bf;
-}
-
-/* users/new, users/edit ================================ */
-.users-form input {
-  margin-bottom: 15px;
+  color: #000000;
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 }

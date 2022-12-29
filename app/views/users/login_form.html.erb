@@ -1,25 +1,31 @@
 <div class="main users-new">
   <div class="container">
-    <div class="form-heading">ログイン</div>
-    <div class="form users-form">
-      <div class="form-body">
+    <div class="row justify-content-center my-5">
+      <div class="col-10 col-md-4 text-center">
         <% if @error_message %>
-          <div class="form-error">
-            <%= @error_message %>
-          </div>
+        <div class="form-error">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <%= @error_message %>
+        </div>
         <% end %>
-
+        <h1 class="h3 mb-5 pb-3 fw-bold">ログイン</h1>
         <%= form_tag("/login") do %>
-          <p>メールアドレス</p>
-          <input name="email" value="<%= @email %>">
-          <p>パスワード</p>
-          <input type="password" name="password" value="<%= @password %>">
-          <input type="submit" value="ログイン">
+        <div class="form-floating mb-3">
+          <input name="email" value="<%= @email %>" class="form-control" id="floatingInput"
+            placeholder="name@example.com">
+          <label for="floatingInput">メールアドレス</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input name="password" value="<%= @password %>" class="form-control" id="floatingPassword"
+            placeholder="Password">
+          <label for="floatingPassword">パスワード</label>
+        </div>
+        <div class="signin-button rounded">
+          <button value="ログイン" class="w-100 btn btn-lg text-white" type="submit">ログインする</button>
+        </div>
         <% end %>
+        <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
       </div>
-      <li>
-        <%= link_to("sign-up", "/signup") %>
-      </li>
     </div>
   </div>
 </div>

@@ -1,0 +1,9 @@
+<div>
+  <% if linked_keywords.include?(keyword.id) %>
+  <div class="voted">
+    <% count = Vote.where(voted_id: @current_user.id).where(keyword_id: keyword.id).count %>
+    <%= keyword.option %>
+    <%= count %>
+  </div>
+  <% end %>
+</div>

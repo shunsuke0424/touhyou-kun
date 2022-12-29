@@ -1,23 +1,35 @@
 <div class="main users-new">
   <div class="container">
-    <div class="form-heading">新規ユーザー登録</div>
-    <div class="form users-form">
-      <div class="form-body">
-        <% @user.errors.full_messages.each do |message| %>
-          <div class="form-error">
-            <%= message %>
-          </div>
+    <div class="row justify-content-center my-5">
+      <div class="col-10 col-md-4 text-center">
+        <% if @error_message %>
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <div class="form-error">
+          <%= @error_message %>
+        </div>
         <% end %>
-        
+        <h1 class="h3 mb-5 pb-3 fw-bold">新規ユーザー登録</h1>
         <%= form_tag("/users/create") do %>
-          <p>ユーザー名</p>
-          <input name="name" value="<%= @user.name %>">
-          <p>メールアドレス</p>
-          <input name="email" value="<%= @user.email %>">
-          <p>パスワード</p>
-          <input type="password" name="password" value="<%= @user.password %>">
-          <input type="submit" value="新規登録">
+        <div class="form-floating mb-3">
+          <input name="name" value="<%= @user.name %>" class="form-control" id="floatingInput"
+            placeholder="name@example.com">
+          <label for="floatingInput">ユーザ名</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input name="email" value="<%= @user.email %>" class="form-control" id="floatingInput"
+            placeholder="name@example.com">
+          <label for="floatingInput">メールアドレス</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input name="password" value="<%= @user.password %>" class="form-control" id="floatingPassword"
+            placeholder="Password">
+          <label for="floatingPassword">パスワード</label>
+        </div>
+        <div class="signin-button rounded">
+          <button value="新規登録" class="w-100 btn btn-lg text-white" type="submit">新規登録する</button>
+        </div>
         <% end %>
+        <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
       </div>
     </div>
   </div>
