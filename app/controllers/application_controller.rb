@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :set_current_user
   
   def set_current_user
-    @current_user = User.find_by(id: session[:user_id])
+    user = User.find_by(id: session[:user_id])
+    @current_user = user || User.find_by(name: "ゲストユーザ")
   end
   
   def authenticate_user
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
   
   def forbid_login_user
-    if @current_user
+    if @current_user && @current_user.name != "ゲストユーザ"
       flash[:notice] = "すでにログインしています"
       redirect_to("/")
     end

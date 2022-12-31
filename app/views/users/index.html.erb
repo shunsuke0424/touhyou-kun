@@ -2,15 +2,10 @@
   <div class="container-fluid fw-bold">
     <div class="row justify-content-center mt-5">
       <div class="col-lg-6 col-sm-6 col-12 text-center">
-        <% if @current_user %>
         <div class="title fw-bold mb-5">さあ、誰をぶっちゃける？</div>
-        <% else %>
-        <div class="title fw-bold mb-5">さあ、誰の結果を見る？<br>
-          新規登録するとぶっちゃけれます。
-        </div>
-        <% end %>
         <ul class="list-group list-group-flush py-3">
           <% @users.each do |user| %>
+          <% if user.name != "ゲストユーザ" %>
           <li class="list-group-item">
             <div class="d-flex justify-content-between">
               <div class="name-text py-3 p-md-3">
@@ -18,10 +13,8 @@
               </div>
               <div class="button-container d-flex align-items-center">
                 <div class="me-2">
-                  <% if @current_user %>
                   <% if user.id != @current_user.id %>
                   <%= link_to("ぶっちゃける", "/users/#{user.id}", class: "vote-text text-decoration-none vote-button-container") %>
-                  <% end %>
                   <% end %>
                 </div>
                 <div class="me-0 mx-md-3">
@@ -30,6 +23,7 @@
               </div>
             </div>
           </li>
+          <% end %>
           <% end %>
         </ul>
       </div>

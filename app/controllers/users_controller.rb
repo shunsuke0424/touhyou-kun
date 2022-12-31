@@ -106,9 +106,10 @@ class UsersController < ApplicationController
       render("users/login_form")
     end
   end
-  
+
   def logout
     session[:user_id] = nil
+    @current_user = nil
     flash[:notice] = "ログアウトしました"
     redirect_to("/login")
   end
