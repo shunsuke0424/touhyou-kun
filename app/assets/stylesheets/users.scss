@@ -2,6 +2,14 @@
   background-color: #6949ff;
 }
 
+.guest-login-button {
+  background-color: #ffffff;
+}
+
+.guest-text {
+  color: #6949ff;
+}
+
 .name-text {
   font-size: 18px;
   @media (max-width: 768px) {
@@ -156,4 +164,16 @@
   @media (max-width: 576px) {
     font-size: 14px;
   }
+}
+
+.next-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 4px;
+  /* Primary/500 */
+  background: #6949ff;
+  border-radius: 100px;
 }

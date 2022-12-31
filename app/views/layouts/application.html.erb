@@ -24,7 +24,7 @@
         </div>
       </a>
       <ul class="nav nav-pills fw-bold align-items-center">
-        <% if @current_user && @current_user.name != "ゲストユーザ" %>
+        <% if @current_user && !@current_user.name.start_with?("ゲストユーザ") %>
         <li class="nav-item">
           <%= link_to(@current_user.name, "/users/ranking/#{@current_user.id}", class: "text-decoration-none text-dark mx-3") %>
         </li>
@@ -34,28 +34,32 @@
         <li class="nav-item">
           <%= link_to("ログアウト", "/logout", {method: "post", class: "text-decoration-none text-dark mx-3"}) %>
         </li>
-        <% elsif @current_user.name == "ゲストユーザ" %>
-        <li class="nav-item">
-          <div class="text-decoration-none text-dark mx-3">ゲストユーザ</div>
-        </li>
+        <% elsif @current_user != nil && @current_user.name.start_with?("ゲストユーザ") %>
         <li class="nav-item">
           <%= link_to("ユーザ一覧", "/", class: "text-decoration-none text-dark mx-3") %>
         </li>
         <li class="nav-item">
-          <%= link_to("ログイン", "/login", class: "text-decoration-none text-dark mx-3") %>
+          <%= link_to("ゲストをログアウトする", "/logout", {method: "post", class: "text-decoration-none text-dark mx-3"}) %>
         </li>
-        <li class="nav-item">
-          <%= link_to("新規登録", "/signup", class: "text-decoration-none text-dark mx-3") %>
-        </li>
-        <% else%>
+        <% else %>
         <li class="nav-item">
           <%= link_to("ユーザ一覧", "/", class: "text-decoration-none text-dark mx-3") %>
         </li>
-        <li class="nav-item">
-          <%= link_to("ログイン", "/login", class: "text-decoration-none text-dark mx-3") %>
-        </li>
-        <li class="nav-item">
-          <%= link_to("新規登録", "/signup", class: "text-decoration-none text-dark mx-3") %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ログイン
+          </a>
+          <ul class="dropdown-menu">
+            <li class="nav-item my-2">
+              <%= link_to("ゲストログイン", "/create_guest_user", class: "text-decoration-none text-dark mx-3 my-1") %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to("ログイン", "/login", class: "text-decoration-none text-dark mx-3 my-1") %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to("新規登録", "/signup", class: "text-decoration-none text-dark mx-3 my-1") %>
+            </li>
+          </ul>
         </li>
         <% end %>
       </ul>

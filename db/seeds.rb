@@ -22,7 +22,6 @@ end
 instances = CSV.open('db/data/users.csv', headers: true).to_a.map do |row|
   {
     name: row['name'],
-    email: row['email'],
     password: row['password'],
     created_at: Time.now,
     updated_at: Time.now
@@ -31,7 +30,6 @@ end
 instances.each do |hash|
   @user = User.new(
     name: hash[:name],
-    email: hash[:email],
     password: hash[:password]
   )
   @user.save

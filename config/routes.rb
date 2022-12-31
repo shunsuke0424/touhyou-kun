@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post "likes/:liked_user_id/destroy" => "likes#destroy"
   post "login" => "users#login"
   post "logout" => "users#logout"
+  post "create_guest_user" => "users#create_guest_user"
+  get "create_guest_user" => "users#create_guest_user"
   get "login" => "users#login_form"
   get "users/ranking/:id" => "users#ranking"
 

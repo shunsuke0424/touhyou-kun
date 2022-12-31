@@ -1,9 +1,9 @@
-name,email,password
-池垣 隼介,shun@test.com,shun
-鈴木 大拙,tachibanayuu@example.ne.jp,yamadaai
-小林 秀雄,yamadaai@example.co.jp,kimuratakanori
-和辻 哲郎,kimuratakanori@example.org,kobayashi_429
-西 周,kobayashi_429@example.org,matsushitamasaki
-福沢 諭吉,matsushitamasaki@example.org,akimotoyuuya
-西田 幾多郎,matsushitaasaki@example.org,akimtoyuuya
+name,password
+池垣 隼介,shun
+鈴木 大拙,yamadaai
+小林 秀雄,kimuratakanori
+和辻 哲郎,kobayashi_429
+西 周,matsushitamasaki
+福沢 諭吉,akimotoyuuya
+西田 幾多郎,akimtoyuuya
 

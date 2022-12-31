@@ -46,7 +46,7 @@
           </button>
         </div>
         <% else %>
-        <div class="keywords-container mb-5 pb-5">
+        <div class="keywords-container pb-3">
           <% Keyword.select(:question).distinct.each_with_index do |keyword, index| %>
           <div class="mb-3">
             <div class="question">
@@ -72,6 +72,9 @@
           <% end %>
         </div>
         <% end %>
+        <div class="d-flex justify-content-center">
+          <%= link_to("完了", "/", class: "next-button-container text-decoration-none text-white my-4 px-4 py-2") %>
+        </div>
       </div>
     </div>
   </div>

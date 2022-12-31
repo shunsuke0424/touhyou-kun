@@ -11,9 +11,8 @@
         <h1 class="h3 mb-5 pb-3 fw-bold">ログイン</h1>
         <%= form_tag("/login") do %>
         <div class="form-floating mb-3">
-          <input name="email" value="<%= @email %>" class="form-control" id="floatingInput"
-            placeholder="name@example.com">
-          <label for="floatingInput">メールアドレス</label>
+          <input name="name" value="<%= @name %>" class="form-control" id="floatingInput" placeholder="田中太郎">
+          <label for="floatingInput">ユーザ名</label>
         </div>
         <div class="form-floating mb-3">
           <input name="password" value="<%= @password %>" class="form-control" id="floatingPassword"
@@ -22,6 +21,11 @@
         </div>
         <div class="signin-button rounded">
           <button value="ログイン" class="w-100 btn btn-lg text-white" type="submit">ログインする</button>
+        </div>
+        <% end %>
+        <%= form_tag("/create_guest_user") do %>
+        <div class="guest-login-button rounded my-3">
+          <button value="ログイン" class="w-100 btn btn-lg btn-outline-secondary" type="submit">ゲストとしてログインする</button>
         </div>
         <% end %>
         <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
