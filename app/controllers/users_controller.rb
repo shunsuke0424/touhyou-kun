@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   
   def ranking
     @user = User.find_by(id: params[:id])
+    @votes_count = Vote.where(voted_id: @user.id).pluck(:voter_id).uniq.length
     @likes_count = Like.where(liked_user_id: @user.id).count
     create_result_hash
     @data = @final_params.map do |param|

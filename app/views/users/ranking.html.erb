@@ -13,11 +13,21 @@
     </div>
     <div class="row justify-content-center mb-5 pb-5">
       <div class="col-lg-3 col-10">
+        <% if @votes_count > 0%>
+        <div class="justify-content-center alert alert-secondary d-flex align-items-center" role="alert">
+          <div>
+            <i class="fa-solid fa-user"></i>
+            <%=@votes_count%>人が参加しました
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="col-lg-3 col-10">
         <% if @likes_count > 0%>
         <div class="justify-content-center alert alert-danger d-flex align-items-center" role="alert">
           <div>
             <i class="fa-solid fa-heart"></i>
-            現在<%=@likes_count%>人から好かれてます！
+            <%=@likes_count%>人から好かれてます
           </div>
         </div>
         <% end %>
