@@ -1,9 +1,29 @@
 <div class="main">
-  <div class="container-fluid fw-bold">
+  <div class="container-fluid">
     <div class="row justify-content-center mt-5">
-      <div class="col-lg-6 col-sm-6 col-12 text-center">
-        <div class="title fw-bold mb-5">さあ、誰をぶっちゃける？</div>
-        <ul class="list-group list-group-flush py-3">
+      <div class="col-lg-6 col-sm-6 col-11 text-center">
+        <div class="title fw-bold mb-3"><%= @group.name%></div>
+        <div class="row justify-content-center mb-3">
+          <div class="col-3 text-secondary"><i class="fa-solid fa-user"></i>
+            <%=@group.users.count%>人
+          </div>
+          <div class="col-6 text-secondary d-none d-md-block overflow-hidden border-start">
+            <i class="fa-sharp fa-solid fa-key"></i>
+            <%=@group.id_token%>
+          </div>
+        </div>
+        <div class="clipboard-container mb-5">
+          <textarea id="clipboard-copy-target"
+            class="d-none">https://buchake-san.herokuapp.com/invite/<%= @group.id_token %></textarea>
+          <div class="copy-button-container text-center">
+            <button type="button" data-bs-toggle="tooltip"
+              class="invite-button clipboard-btn btn btn-outline-secondary btn-sm" data-clipboard-action="copy"
+              data-clipboard-target="#clipboard-copy-target" data-bs-placement="right" title="このリンクでメンバーを招待する"><i
+                class="fa-solid fa-link"></i> 招待リンクをコピーする</button>
+          </div>
+        </div>
+        <div class="sub-title fw-bold mb-3 pt-5">さあ、誰からぶっちゃけていく？</div>
+        <ul class="list-group list-group-flush py-3 fw-bold">
           <% @users.each do |user| %>
           <% unless user.name.start_with?("ゲストユーザ") %>
           <li class="list-group-item">
@@ -32,3 +52,9 @@
     </div>
   </div>
 </div>
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+</script>

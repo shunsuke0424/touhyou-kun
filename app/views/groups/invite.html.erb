@@ -1,0 +1,20 @@
+<div class="main">
+  <div class="container-fluid fw-bold">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-6 col-sm-6 col-10 text-center">
+        <div class="title fw-bold mb-2"><%= @group.name %>に招待されました</div>
+        <div class="fw-bold mb-5">早速参加しましょう！</div>
+        <div class="me-0 mx-md-3">
+          <%= link_to "/signup_join_form/#{@group.id_token}", class: "text-decoration-none group-button keyword-text my-4" do %>
+          初めてご利用される方<br>（新規登録）
+          <% end %>
+        </div>
+        <div class="me-0 mx-md-3">
+          <%= link_to "/login_join_form/#{@group.id_token}", class: "text-decoration-none group-button keyword-text my-4" do %>
+          既にアカウントをお持ちの方<br>（ログイン）
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

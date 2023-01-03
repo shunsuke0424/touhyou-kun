@@ -1,0 +1,28 @@
+<div class="main">
+  <div class="container-fluid fw-bold">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-6 col-sm-6 col-10 text-center">
+        <div class="title fw-bold mb-5"><%= @group.name %>に参加する</div>
+        <%= form_tag("/groups/login_join/#{@group.id_token}") do %>
+        <div class="form-floating mb-3">
+          <input name="name" value="<%= @name %>" class="form-control" id="floatingInput" placeholder="田中太郎">
+          <label for="floatingInput">登録済みのユーザ名</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input name="password" value="<%= @password %>" class="form-control" id="floatingPassword"
+            placeholder="Password">
+          <label for="floatingPassword">登録済みのパスワード</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input name="id_token" value="<%= @group.id_token %>" class="form-control" id="floatingInput"
+            placeholder="田中太郎" disabled>
+          <label for="floatingInput">グループID</label>
+        </div>
+        <div class="signin-button rounded">
+          <button value="新規登録" class="w-100 btn btn-lg text-white" type="submit">参戦する</button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

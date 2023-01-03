@@ -15,13 +15,16 @@ Rails.application.routes.draw do
   # group
   post "groups/create" => "groups#create"
   post "groups/join" => "groups#join"
-  post "groups/all_create/:id_token" => "groups#all_create"
+  post "groups/signup_join/:id_token" => "groups#signup_join"
+  post "groups/login_join/:id_token" => "groups#login_join"
   get "groups/index" => "groups#index"
   get "groups/:id_token" => "groups#show"
   get "create_group" => "groups#create_form"
   get "join_group" => "groups#join_form"
-  get "/" => "groups#top"
-
+  get "/signup_join_form/:id_token" => "groups#signup_join_form"
+  get "/login_join_form/:id_token" => "groups#login_join_form"
+  get "/invite/:id_token" => "groups#invite"
+  
   # vote
   post "votes/:keyword_id/:voter_id/:voted_id/create" => "votes#create"
   post "votes/:keyword_id/:voter_id/:voted_id/destroy" => "votes#destroy"
@@ -31,6 +34,6 @@ Rails.application.routes.draw do
   post "likes/:liked_user_id/destroy" => "likes#destroy"
 
   # home
-  get "about" => "home#about"
+  get "/" => "home#about"
 end
 

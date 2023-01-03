@@ -17,4 +17,17 @@
 //= require jquery_ujs
 //= require chartkick
 //= require Chart.bundle
+//= require clipboard
+
+$(document).ready(function () {
+  var clipboard = new Clipboard(".clipboard-btn", {
+    text: function (trigger) {
+      let targetSelector = trigger.getAttribute("data-clipboard-target");
+      return $(targetSelector).val();
+    },
+  });
+  clipboard.on("success", function (e) {
+    $(".clipboard-btn").html("コピーしました").fadeIn(1000);
+  });
+});
 //= require_tree .
