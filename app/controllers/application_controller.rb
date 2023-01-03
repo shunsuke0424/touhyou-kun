@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     if @current_user == nil
       flash[:notice] = "ログインが必要です"
-      redirect_to("/login")
+      redirect_to("/signup")
     end
   end
 

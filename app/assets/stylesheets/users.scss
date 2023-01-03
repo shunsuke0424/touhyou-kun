@@ -177,3 +177,49 @@
   background: #6949ff;
   border-radius: 100px;
 }
+
+.account-info-container {
+  background-color: #6949ff;
+  border-radius: 8px;
+  .fa-user {
+    color: #6949ff;
+  }
+  .user-name-container {
+    font-size: 28px;
+  }
+
+  .total-num-container {
+    font-size: 32px;
+  }
+
+  .explain-text-container {
+    font-weight: normal;
+    font-size: 12px;
+    color: #e4e4e4;
+  }
+
+  .start-date-container {
+    font-size: 12px;
+    font-weight: normal;
+    color: #e4e4e4;
+  }
+}
+
+.my-report-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+  border-radius: 8px;
+  /* Primary/500 */
+  border: 2px solid #ffffff;
+  color: white;
+}
+
+.my-report-button:hover {
+  color: #6949ff;
+  background: rgb(255, 255, 255);
+  border: 2px solid #6949ff;
+}

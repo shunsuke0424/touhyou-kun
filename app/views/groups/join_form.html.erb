@@ -1,0 +1,43 @@
+<div class="main">
+  <div class="container-fluid">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-6 col-sm-6 col-12 text-center">
+        <% if @group %>
+        <div class="title fw-bold">
+          <%= @group.name%>が見つかりました
+        </div>
+        <div class="text-secondary mb-5">
+          <i class="fa-solid fa-users"></i>
+          <%= @group.users.count%>人のメンバー
+        </div>
+        <% else %>
+        <div class="title fw-bold mb-5">
+          グループIDを入力する
+        </div>
+        <% end %>
+        <% if @group %>
+        <%= form_tag("/groups/join?id_token=#{@group.id_token}") do %>
+        <div class="form-floating mb-3">
+          <input name="id_token" value="<%= @group.id_token %>" class="form-control" id="floatingInput"
+            placeholder="田中太郎" disabled>
+          <label for="floatingInput">招待コード</label>
+        </div>
+        <div class="signin-button rounded">
+          <button value="参加する" class="w-100 fw-bold btn btn-lg text-white" type="submit">参加する</button>
+        </div>
+        <% end %>
+        <% else %>
+        <%= form_tag("/groups/join") do %>
+        <div class="form-floating mb-3">
+          <input name="id_token" value="<%= @id_token %>" class="form-control" id="floatingInput" placeholder="招待コード">
+          <label for="floatingInput">招待ID</label>
+        </div>
+        <div class="signin-button rounded">
+          <button value="参加する" class="w-100 fw-bold btn btn-lg text-white" type="submit">参加する</button>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

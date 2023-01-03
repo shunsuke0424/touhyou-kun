@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, {only: [:show, :edit, :update]}
+  before_action :authenticate_user, {only: [:detail, :show, :edit, :update,:ranking]}
   before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
   before_action :ensure_correct_user, {only: [:edit, :update]}
   def index
     @users = User.all.order(updated_at: :desc)
   end
-  
+
   def show
     @keywords = Keyword.all
     @user = User.find_by(id: params[:id])
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-  
+
   def create
     @user = User.new(
       name: params[:name],
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "ユーザー登録が完了しました"
-      redirect_to("/")
+      redirect_to("/detail")
     else
       render("users/new")
     end
@@ -44,6 +44,11 @@ class UsersController < ApplicationController
     else
       render("users/edit")
     end
+  end
+  def detail
+    @total_evaluators = Vote.where(voter_id: @current_user.id).pluck(:voted_id).uniq.count
+    @total_evaluated = Vote.where(voted_id: @current_user.id).pluck(:voter_id).uniq.count
+    @total_lovers = Like.where(liked_user_id: @current_user.id).count
   end
   
   def ranking
@@ -100,7 +105,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "ゲストとしてログインしました"
-      redirect_to("/")
+      redirect_to("/users/index")
     else
       render("users/new")
     end
@@ -111,7 +116,7 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
-      redirect_to("/")
+      redirect_to("/detail")
     else
       @error_message = "ユーザ名またはパスワードが間違っています"
       @name = params[:name]

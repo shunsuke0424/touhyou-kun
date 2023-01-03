@@ -1,0 +1,70 @@
+<div class="main">
+  <div class="container-fluid fw-bold">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-4 col-sm-6 col-12 text-center">
+        <div class="title fw-bold mb-5">アカウント情報</div>
+        <div class="account-info-container text-white p-3">
+          <div class="row justify-content-center">
+            <div class="col-3 text-center">
+              <div class="user-name-container p-2">
+                <i class="fa-solid fa-user p-3 rounded-circle bg-white"></i>
+              </div>
+            </div>
+            <div class="col-9 text-start p-2">
+              <div class="user-name-container">
+                <%= @current_user.name %>
+              </div>
+              <div class="start-date-container">
+                利用開始日：<%= @current_user.created_at.strftime('%Y年%m月%d日') %>~
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-4 text-center p-2">
+              <span class="total-num-container">
+                <%= @total_evaluators %>
+              </span>人
+              <div class="explain-text-container">
+                評価した人数
+              </div>
+            </div>
+            <div class="col-4 text-center p-2">
+              <span class="total-num-container">
+                <%= @total_evaluated %>
+              </span>人
+              <div class="explain-text-container">
+                評価してくれた人数
+              </div>
+            </div>
+            <div class="col-4 text-center p-2">
+              <span class="total-num-container">
+                <%= @total_lovers %>
+              </span>人
+              <div class="explain-text-container">
+                愛されている人数
+              </div>
+            </div>
+          </div>
+          <div class="me-0 mx-md-3">
+            <%= link_to "/users/ranking/#{@current_user.id}", class: "text-decoration-none my-report-button keyword-text my-4" do %>
+            <i class="fa-solid fa-eye"></i>
+            周りからの評価をみる
+            <% end %>
+          </div>
+        </div>
+        <div class="me-0 mx-md-3">
+          <%= link_to "/create_group", class: "text-decoration-none group-button keyword-text my-4" do %>
+          <i class="fa-solid fa-user-plus group-icon"></i>
+          グループを作成する
+          <% end %>
+        </div>
+        <div class="me-0 mx-md-3">
+          <%= link_to "/join_group", class: "text-decoration-none group-button keyword-text my-4" do %>
+          <i class="fa-solid fa-right-to-bracket group-icon"></i>
+          グループに参加する
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
