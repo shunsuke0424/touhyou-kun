@@ -9,7 +9,7 @@
             <div class="d-flex justify-content-between">
               <div class="name-text py-3 p-md-3 text-start">
                 <%= group.name %>
-                (<%= group.users.count %>)
+                (<%= group.users.where(disabled: false).count %>)
                 <div class="group-id text-secondary d-none d-md-block">
                   ID: <%= group.id_token%></div>
               </div>

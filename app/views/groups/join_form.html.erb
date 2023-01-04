@@ -8,7 +8,7 @@
         </div>
         <div class="text-secondary mb-5">
           <i class="fa-solid fa-users"></i>
-          <%= @group.users.count%>人のメンバー
+          <%= @group.users.where(disabled: false).count%>人のメンバー
         </div>
         <% else %>
         <div class="title fw-bold mb-5">
