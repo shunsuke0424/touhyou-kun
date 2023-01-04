@@ -64,6 +64,30 @@
           グループに参加する
           <% end %>
         </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn  btn-link text-danger mb-5 pb-5" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          退会する
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">退会の確認</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-start">
+                本当に退会してもよろしいですか？<br>退会すると、これまでに登録した情報やサービス利用履歴がすべて削除されます。
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">戻る</button>
+                <%= link_to("退会する", "/users/destroy/#{@current_user.id}", class: "btn btn-danger text-decoration-none", method: "post") %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

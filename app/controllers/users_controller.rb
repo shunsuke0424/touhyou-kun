@@ -3,12 +3,12 @@ class UsersController < ApplicationController
   before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
   before_action :ensure_correct_user, {only: [:edit, :update]}
   def index
-    @users = User.all.order(updated_at: :desc)
+    @users = User.where(disabled: false).all.order(updated_at: :desc)
   end
 
   def show
     @keywords = Keyword.all
-    @user = User.find_by(id: params[:id])
+    @user = User.where(disabled: false).find_by(id: params[:id])
     @grouped_keywords = @keywords.group_by {|k| k[:question]}
   end
   
@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(
       name: params[:name],
-      password: params[:password]
+      password: params[:password],
+      disabled: false
     )
     if @user.save
       session[:user_id] = @user.id
@@ -29,7 +30,15 @@ class UsersController < ApplicationController
       render("users/new")
     end
   end
-  
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.update(disabled: true)
+    session[:user_id] = nil
+    flash[:notice] = "退会しました"
+    redirect_to("/")
+  end
+
   def edit
     @user = User.find_by(id: params[:id])
   end
@@ -52,7 +61,7 @@ class UsersController < ApplicationController
   end
   
   def ranking
-    @user = User.find_by(id: params[:id])
+    @user = User.where(disabled: false).find_by(id: params[:id])
     @votes_count = Vote.where(voted_id: @user.id).pluck(:voter_id).uniq.length
     @likes_count = Like.where(liked_user_id: @user.id).count
     create_result_hash
@@ -110,9 +119,9 @@ class UsersController < ApplicationController
       render("users/new")
     end
   end
-  
+
   def login
-    @user = User.find_by(name: params[:name])
+    @user = User.where(disabled: false).find_by(name: params[:name])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"

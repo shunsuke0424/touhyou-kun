@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id_token: params[:id_token])
     return redirect_to("/groups/index"),flash[:notice] = "グループが見つかりません" unless @group
     
-    @users = @group.users
+    @users = @group.users.where(disabled: false)
   end
 
   def create
@@ -77,7 +77,7 @@ class GroupsController < ApplicationController
     group = Group.find_by(id_token: params[:id_token])
     return redirect_to("/users/login_form"),flash[:notice] = "グループが見つかりません" unless group
     
-    @user = User.find_by(name: params[:name])
+    @user = User.where(disabled: false).find_by(name: params[:name])
     if !@user || !@user.authenticate(params[:password])
       flash[:notice] ="ユーザ名またはパスワードが間違っています"
       redirect_to("/login_join_form/#{group.id_token}")
@@ -103,7 +103,8 @@ class GroupsController < ApplicationController
     
     @user = User.create!(
       name: params[:name],
-      password: params[:password]
+      password: params[:password],
+      disabled: false
     )
     @user.member_ships.build(group: group)
     if @user.save!

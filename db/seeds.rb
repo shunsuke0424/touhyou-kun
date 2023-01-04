@@ -34,14 +34,3 @@ instances.each do |hash|
   )
   @user.save
 end
-
-user_max = User.all.count
-keyword_max = Keyword.all.count
-200.times do |i|
-  vote = Vote.find_or_initialize_by(
-    voter_id: rand(user_max),
-    voted_id: rand(user_max),
-    keyword_id: rand(keyword_max)
-  )
-  vote.save
-end
