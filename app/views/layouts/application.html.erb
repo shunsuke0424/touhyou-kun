@@ -31,19 +31,8 @@
         <li class="nav-item">
           <%= link_to("グループリスト", "/groups/index", class: "text-decoration-none text-dark mx-3") %>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            その他
-          </a>
-          <ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li class="nav-item m-2">
-              <%= link_to("ログアウト", "/logout", {method: "post", class: "text-decoration-none text-dark mx-3"}) %>
-            </li>
-            <li class="nav-item m-2">
-              <%= link_to("退出", "/logout", {method: "post", class: "text-decoration-none text-danger mx-3"}) %>
-            </li>
-          </ul>
+        <li class="nav-item">
+          <%= link_to("ログアウト", "/logout", {method: "post", class: "text-decoration-none text-dark mx-3"}) %>
         </li>
         <% else %>
         <li class="nav-item my-2">
