@@ -1,1 +1,1 @@
-$('#keyword_<%= @keyword.id %>').html('<%= link_to "/votes/#{@keyword.id}/#{@current_user.id}/#{@user.id}/create", class: "text-decoration-none unvoted keyword-text my-4", method: "post", remote:true do %><%= @keyword.option %><% end %>');
+$('#keyword_<%= @keyword.id %>').html('<%= link_to "/votes/#{@keyword.id}/#{@current_user.id}/#{@user.id}/create", class: "py-3 text-decoration-none unvoted keyword-text my-1", method: "post", remote:true do %><%= @keyword.option %><% end %>');
