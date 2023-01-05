@@ -43,24 +43,24 @@
               <%= result_hash[:question] %>
             </div>
             <div class="row justify-content-center align-items-center">
-              <div class="left-result p-3 col-5 col-md-3 order-1 order-md-1 me-2 me-md-0">
-                <div class="option-container justify-content-center">
-                  <%= result_hash[:result][-1][:option] %>
-                </div>
-                <div class="ratio-container justify-content-center">
-                  <%= result_hash[:result][-1][:ratio] %>%
+              <div class="p-3 col-12 col-md-6  me-2 me-md-0">
+                <div class="row">
+                  <% result_hash[:result].each_with_index.reverse_each do |result, index|%>
+                  <div class="col-6">
+                    <div class="result result-box-<%= index %> p-2 mb-2">
+                      <div class="option-container justify-content-center">
+                        <%= result[:option] %>
+                      </div>
+                      <div class="ratio-container justify-content-center">
+                        <%= result[:ratio] %>%
+                      </div>
+                    </div>
+                  </div>
+                  <% end %>
                 </div>
               </div>
-              <div class="chart-result col-md-6 col-9 order-3 order-md-2">
+              <div class="chart-result col-md-6 col-9 ">
                 <%= pie_chart data, donut: true, suffix: "%", legend: false %>
-              </div>
-              <div class="right-result p-3 col-5 col-md-3 order-2 order-md-3 ms-2 ms-md-0">
-                <div class="option-container justify-content-center">
-                  <%= result_hash[:result][0][:option] %>
-                </div>
-                <div class="ratio-container justify-content-center">
-                  <%= result_hash[:result][0][:ratio] %>%
-                </div>
               </div>
             </div>
           </div>

@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-lg-5 col-10">
+      <div class="col-lg-5 col-11">
         <% linked_keywords = Vote.where(voter_id: @current_user.id, voted_id: @user.id ).pluck(:keyword_id) %>
         <% if @user.id == @current_user.id %>
         <div class="keywords-container">
@@ -48,20 +48,20 @@
         <% else %>
         <div class="keywords-container pb-3">
           <% Keyword.select(:question).distinct.each_with_index do |keyword, index| %>
-          <div class="mb-3">
-            <div class="question">
+          <div class="my-3">
+            <div class="question mt-5 mb-2">
               Q<%= index+1 %>. <%= keyword.question %>
             </div>
-            <div class="d-flex justify-content-center">
+            <div class="row justify-content-center">
               <% keywords = @grouped_keywords[keyword.question] %>
               <% keywords.each do |keyword| %>
-              <div class="mx-2 pa-4" id="keyword_<%= keyword.id %>">
+              <div class="col-6" id="keyword_<%= keyword.id %>">
                 <% if linked_keywords.include?(keyword.id) %>
-                <%= link_to "/votes/#{keyword.id}/#{@current_user.id}/#{@user.id}/destroy", class: "text-decoration-none voted keyword-text my-4", method: "post", remote:true do %>
+                <%= link_to "/votes/#{keyword.id}/#{@current_user.id}/#{@user.id}/destroy", class: "py-3 text-decoration-none voted keyword-text my-1", method: "post", remote:true do %>
                 <%= keyword.option %>
                 <% end %>
                 <% else %>
-                <%= link_to "/votes/#{keyword.id}/#{@current_user.id}/#{@user.id}/create", class: "text-decoration-none unvoted keyword-text my-4", method: "post", remote:true do %>
+                <%= link_to "/votes/#{keyword.id}/#{@current_user.id}/#{@user.id}/create", class: "py-3 text-decoration-none unvoted keyword-text my-1", method: "post", remote:true do %>
                 <%= keyword.option %>
                 <% end %>
                 <% end %>
