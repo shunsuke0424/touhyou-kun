@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    post "users/destroy/:id" => "users#destroy"
+    post "users/update/:id" => "users#update"
+    get "users/index" => "users#index"
+  end
+
   # user
   post "users/create" => "users#create"
   post "users/destroy/:id" => "users#destroy"

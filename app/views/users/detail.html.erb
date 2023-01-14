@@ -51,6 +51,14 @@
             周りからの評価をみる
             <% end %>
           </div>
+          <% if @current_user.admin? %>
+          <div class="me-0 mx-md-3">
+            <%= link_to "/admin/users/index", class: "text-decoration-none my-report-button keyword-text my-4" do %>
+            <i class="fa-solid fa-gear"></i>
+            管理画面にいく
+            <% end %>
+          </div>
+          <% end %>
         </div>
         <div class="me-0 mx-md-3">
           <%= link_to "/create_group", class: "text-decoration-none group-button keyword-text my-4" do %>
